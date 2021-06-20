@@ -1,9 +1,35 @@
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+
+// Components
+import Navbar from './components/Navbar'
+import Backdrop from './components/Backdrop'
+import SideDrawer from './components/Sidedrawer'
+
+// Pages
+import ProductPage from './pages/ProductPage'
+import HomePage from './pages/HomePage'
+import CartPage from './pages/CartPage'
+
+import './App.css'
 
 function App() {
+
+  const [sideToggle, setSideToggle] = useState(false);
+
   return (
-    <div className="app">
-      <h1>hi</h1>
-    </div>
+    <Router>
+      <Navbar />
+      <SideDrawer show={sideToggle} />
+      <Backdrop show={sideToggle}/>
+      <main>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/cart" component={CartPage} />
+          <Route exact path="/product/:id" component={ProductPage} />
+        </Switch>
+      </main>
+    </Router>
   );
 }
 
