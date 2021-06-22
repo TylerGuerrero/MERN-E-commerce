@@ -32,7 +32,10 @@ const ProductPage = () => {
                             <option value="4">4</option>
                         </select>
                     </p>
-                    <button type="button">Add to Cart</button>
+                    <p>
+                        <button type="button">Add to Cart</button>
+                    </p>
+                    
                 </div>
             </div>
         </div>
