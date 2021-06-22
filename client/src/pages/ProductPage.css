@@ -1,0 +1,10 @@
+.productpage {
+    max-width: 1300px;
+    margin: 1rem auto;
+    display: flex;
+}
+
+.productpage_left {
+    display: flex;
+    flex: 0.8;
+}

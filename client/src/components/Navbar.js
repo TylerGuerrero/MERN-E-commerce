@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './Navbar.css'
 
-const Navbar = () => {
+const Navbar = ({ setSideToggle , sideToggle }) => {
     return (
         <nav className="navbar">
             <div className="navbar_logo">
@@ -23,8 +23,8 @@ const Navbar = () => {
                     </Link>
                 </li>
             </ul>
-            <button onClick>
-                
+            <button onClick={() => setSideToggle(!sideToggle)}>
+                Side Menu
             </button>
         </nav>
     )

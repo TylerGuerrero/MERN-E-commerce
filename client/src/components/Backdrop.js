@@ -2,13 +2,15 @@ import React from 'react'
 
 import './Backdrop.css'
 
-const Backdrop = ({ show }) => {
+const Backdrop = ({ show, setSideToggle }) => {
     return (
         <React.Fragment>
          {
-            show && (<div className="backdrop">
-        
-            </div>)
+            show && (
+            <div className="backdrop" onClick={() => setSideToggle(!show)}>
+                
+            </div>
+            )
         }
     </React.Fragment>
     )

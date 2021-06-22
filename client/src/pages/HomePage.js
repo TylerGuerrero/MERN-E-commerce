@@ -1,11 +1,17 @@
 import React from 'react'
 
 import './HomePage.css'
+import Product from '../components/Product'
 
 const HomePage = () => {
     return (
         <div className="homepage">
-            Home Page
+            <h2 className="homepage_title">Latest Products</h2>
+            <div className="homepage_products">
+                <Product />
+                <Product />
+                <Product />
+            </div>
         </div>
     )
 }

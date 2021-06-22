@@ -14,14 +14,13 @@ import CartPage from './pages/CartPage'
 import './App.css'
 
 function App() {
-
   const [sideToggle, setSideToggle] = useState(false);
 
   return (
     <Router>
-      <Navbar />
-      <SideDrawer show={sideToggle} />
-      <Backdrop show={sideToggle}/>
+      <Navbar setSideToggle={setSideToggle} sideToggle={sideToggle}/>
+      <SideDrawer show={sideToggle} setSideToggle={setSideToggle} />
+      <Backdrop show={sideToggle} setSideToggle={setSideToggle}/>
       <main>
         <Switch>
           <Route exact path="/" component={HomePage} />
