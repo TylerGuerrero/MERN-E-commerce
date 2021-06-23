@@ -1,9 +1,10 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cors from 'cors'
+import morgan from 'morgan'
 
 import ProductRoutes from './routes/ProductRoutes.js'
-import  connectDB  from './config/db.js'
+import connectDB  from './config/db.js'
 
 connectDB()
 
@@ -12,6 +13,8 @@ dotenv.config()
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(morgan('dev'))
+app.use(cors({credentials: true, origin: true}))
 
 app.use('/products', ProductRoutes)
 

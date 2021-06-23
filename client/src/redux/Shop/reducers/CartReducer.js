@@ -29,11 +29,22 @@ export const CartReducer = (state = initialState, action) => {
                 error: null
             }
         case types.ADD_TO_CART_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                cartItems: action.payload,
-                error: null
+            const existedItem = state.cartItems.find((x) => x.product === action.payload.product)
+
+            if (existedItem) {
+                return {
+                    ...state,
+                    cartItems: state.cartItems.map((x) => x.product === action.payload.product ? existedItem: x),
+                    error: null,
+                    loading: false
+                }
+            } else {
+                return {
+                    ...state,
+                    loading: false,
+                    cartItems: action.payload,
+                    error: null
+                }
             }
         case types.ADD_TO_CART_ERROR:
             return {
@@ -50,6 +61,7 @@ export const CartReducer = (state = initialState, action) => {
         case types.REMOVE_FROM_CART_SUCCESS:
             return {
                 ...state,
+                cartItems: state.cartItems.filter((x) => x.product !== action.payload),
                 loading: false,
                 error: null
             }
@@ -64,7 +76,6 @@ export const CartReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
                 error: null
-
             }
         case types.CART_RESET_SUCCESS:
             return {

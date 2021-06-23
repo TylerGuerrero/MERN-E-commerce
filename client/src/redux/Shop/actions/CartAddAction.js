@@ -5,6 +5,7 @@
 // the global state object within your application
 
 import * as types from '../Types'
+import * as api from '../../../api/index'
 
 export const addCartRequestAction = () => {
     return {
@@ -27,12 +28,24 @@ export const addCartError = (error) => {
     }
 }
 
-export const addCartAction = () => (dispatch) => {
+export const addCartAction = (id, qty) => async (dispatch, getState) => {
     dispatch(addCartRequestAction())
+    
+    try {
+        const { data } = await api.getCartItem(id)
 
-    try {   
-        dispatch(addCartSuccess())
+        const cartItem = {
+            product: data._id,
+            name: data.name,
+            imageUrl: data.imageUrl,
+            price: data.price,
+            countInStock: data.countInStock,
+            qty: qty
+        }
+
+        dispatch(addCartSuccess(cartItem))
+        localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems))
     } catch (error) {
-        dispatch(addCartError(error))
+        dispatch(addCartError(error.message))
     }   
 }

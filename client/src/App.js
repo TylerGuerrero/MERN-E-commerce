@@ -26,7 +26,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/cart" component={CartPage} />
-          <Route exact path="/product/:id" component={ProductPage} />
+          <Route exact path="/products/:id" component={ProductPage} />
         </Switch>
       </main>
     </Router>
