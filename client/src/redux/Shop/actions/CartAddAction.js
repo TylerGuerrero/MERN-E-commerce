@@ -7,7 +7,7 @@
 import * as types from '../Types'
 import * as api from '../../../api/index'
 
-export const addCartRequestAction = () => {
+export const addCartRequest = () => {
     return {
         type: types.ADD_TO_CART_REQUEST,
         payload: null
@@ -29,7 +29,7 @@ export const addCartError = (error) => {
 }
 
 export const addCartAction = (id, qty) => async (dispatch, getState) => {
-    dispatch(addCartRequestAction())
+    dispatch(addCartRequest())
     
     try {
         const { data } = await api.getCartItem(id)

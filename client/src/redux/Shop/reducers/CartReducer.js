@@ -21,7 +21,7 @@ const initialState = {
 }
 
 export const CartReducer = (state = initialState, action) => {
-    switch (action.payload) {
+    switch (action.type) {
         case types.ADD_TO_CART_REQUEST:
             return {
                 ...state,
@@ -42,7 +42,7 @@ export const CartReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     loading: false,
-                    cartItems: action.payload,
+                    cartItems: [...state.cartItems, action.payload],
                     error: null
                 }
             }

@@ -1,28 +1,28 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import '../components/CartItem.css'
 
-const CartItem = () => {
-    const { id } = useParams() 
+const CartItem = ({ item, qtyChangeHandler, removeFromCartHandler }) => {
 
     return (
         <div className="cartitem">
             <div className="cartitem_image">
-                <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80" 
-                    alt="prodcut name"/>
+                <img src={item.imageUrl} 
+                    alt={item.name}/>
             </div>
-            <Link to={`product/${id}`} className="cartitem_name">
-                <p>Product 1</p>
+            <Link to={`product/${item.product}`} className="cartitem_name">
+                <p>{item.name}</p>
             </Link>
-            <p className="cartitem_price">$499.99</p>
-            <select>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+            <p className="cartitem_price">${item.price}</p>
+            <select value={item.qty} onChange={(e) => qtyChangeHandler(item.product, e.target.value)}>
+                {[...Array(item.countInStock).keys()].map((x) => {
+                    return (
+                            <option key={x + 1} value={x + 1}> {x + 1} </option>
+                        )
+                })}
             </select>
-            <button className="cartitem_deleteBtn">
+            <button className="cartitem_deleteBtn" onClick={() => removeFromCartHandler(item.product)}>
                 <i className="fas fa-trash"></i>
             </button>
         </div>
